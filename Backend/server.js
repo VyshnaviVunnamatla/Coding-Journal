@@ -9,21 +9,28 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
 const allowedOrigins = [
   "http://localhost:3000",
   "https://coding-journal-vv.vercel.app"
 ];
 
 app.use(cors({
-  origin: ["http://localhost:3000", "https://coding-journal-vv.vercel.app"],
+  origin: allowedOrigins,
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  optionsSuccessStatus: 200
 }));
 
 app.use(express.json());
 
+// ✅ OPTIONAL: handle preflight requests for all routes
+app.options("*", cors());
+
 app.get("/", (req, res) => {
   res.send("Coding Journal API is running.");
 });
+
 app.use("/api/users", userRoutes);
 app.use("/api/problems", problemRoutes);
 
