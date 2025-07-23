@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import ProblemForm from "./components/ProblemForm";
-import Home from "./components/Home"; // your problems list page
+import Home from "./components/ProblemList"; // your problems list page
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { AuthProvider } from "./context/AuthContext";
