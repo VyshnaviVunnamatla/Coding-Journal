@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ProblemList />} />
         <Route path="/add-problem" element={<ProblemForm />} />
+        <Route path="/add-problem/:id" element={<ProblemForm />} />
         <Route path="/edit-problem/:id" element={<ProblemForm />} />
       </Routes>
     </Router>
