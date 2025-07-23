@@ -15,13 +15,9 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://coding-journal-vv.vercel.app"
-  ],
+  origin: ["http://localhost:3000", "https://coding-journal-vv.vercel.app"],
   credentials: true,
 }));
-
 
 app.use(express.json());
 
