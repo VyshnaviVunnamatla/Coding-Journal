@@ -38,13 +38,8 @@ function ProblemForm() {
       body: JSON.stringify(problem),
     });
 
-    if (res.ok) {
-      toast.success("Problem saved successfully!");
-      navigate("/");
-    } else {
-      toast.error("Failed to save problem");
-    }
-
+    if (res.ok) navigate("/");
+    else alert("Error saving problem");
   };
 
   return (
