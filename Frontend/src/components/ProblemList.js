@@ -9,14 +9,16 @@ function ProblemList() {
   const [problems, setProblems] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterDifficulty, setFilterDifficulty] = useState("");
-  const { user, logout } = useAuth(); // 👈 Added logout
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProblems = async () => {
       try {
         const res = await fetch(API_BASE, {
+          method: "GET",
           headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${user?.token}`,
           },
         });
@@ -54,12 +56,16 @@ function ProblemList() {
       const res = await fetch(`${API_BASE}/${id}`, {
         method: "DELETE",
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${user?.token}`,
         },
       });
 
-      if (res.ok) setProblems(problems.filter((p) => p._id !== id));
-      else alert("Failed to delete problem");
+      if (res.ok) {
+        setProblems(problems.filter((p) => p._id !== id));
+      } else {
+        alert("Failed to delete problem");
+      }
     } catch (err) {
       alert("Error deleting problem");
     }
