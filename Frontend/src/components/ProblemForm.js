@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Card } from "react-bootstrap";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 const API_BASE = "https://coding-journal-hqbn.onrender.com/api/problems";
 
@@ -36,8 +38,13 @@ function ProblemForm() {
       body: JSON.stringify(problem),
     });
 
-    if (res.ok) navigate("/");
-    else alert("Error saving problem");
+    if (res.ok) {
+      toast.success("Problem saved successfully!");
+      navigate("/");
+    } else {
+      toast.error("Failed to save problem");
+    }
+
   };
 
   return (
