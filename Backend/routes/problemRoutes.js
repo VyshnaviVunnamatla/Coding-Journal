@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
+import Problem from "../models/Problem.js";
 const router = express.Router();
-const Problem = require("../models/Problem");
 
 // GET all problems
 router.get("/", async (req, res) => {
@@ -47,4 +47,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
