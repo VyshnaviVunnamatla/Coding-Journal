@@ -1,25 +1,26 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import ProblemForm from "./components/ProblemForm";
-import ProblemList from "./components/ProblemList";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-<ToastContainer position="top-center" autoClose={2000} />
-
+import Home from "./components/Home"; // your problems list page
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<ProblemList />} />
-        <Route path="/add-problem" element={<ProblemForm />} />
-        <Route path="/add-problem/:id" element={<ProblemForm />} />
-        <Route path="/edit-problem/:id" element={<ProblemForm />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/add-problem" element={<PrivateRoute><ProblemForm /></PrivateRoute>} />
+          <Route path="/edit/:id" element={<PrivateRoute><ProblemForm /></PrivateRoute>} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
