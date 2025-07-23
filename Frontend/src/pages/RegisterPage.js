@@ -48,4 +48,5 @@ const LoginPage = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
+
