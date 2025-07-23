@@ -1,10 +1,12 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const problemSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  description: { type: String },
-  code: { type: String },
-  difficulty: { type: String, enum: ["Easy", "Medium", "Hard"], default: "Easy" },
+  description: String,
+  code: String,
+  difficulty: { type: String, enum: ["Easy", "Medium", "Hard"], default: "Easy" }
 }, { timestamps: true });
 
-module.exports = mongoose.model("Problem", problemSchema);
+const Problem = mongoose.model("Problem", problemSchema);
+
+export default Problem;
