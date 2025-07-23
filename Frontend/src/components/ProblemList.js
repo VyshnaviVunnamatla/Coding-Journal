@@ -1,6 +1,5 @@
-// src/components/ProblemList.js
 import React, { useEffect, useState } from "react";
-import { Card, Button, Row, Col, Form } from "react-bootstrap";
+import { Card, Button, Row, Col, Form, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -10,12 +9,17 @@ function ProblemList() {
   const [problems, setProblems] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterDifficulty, setFilterDifficulty] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const { user } = useAuth(); // 👈 Get user from AuthContext
+  const { user } = useAuth(); // Get logged-in user from context
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      setLoading(false);
+      return;
+    }
 
     const fetchProblems = async () => {
       try {
@@ -25,13 +29,17 @@ function ProblemList() {
           },
         });
 
-        if (!res.ok) throw new Error("Unauthorized");
+        if (!res.ok) {
+          throw new Error("Unauthorized or session expired");
+        }
 
         const data = await res.json();
-        setProblems(data);
+        setProblems(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Fetch failed", err);
-        setProblems([]);
+        setError("Failed to load problems. Please make sure you're logged in.");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -39,7 +47,7 @@ function ProblemList() {
   }, [user]);
 
   const handleEdit = (problem) => {
-    navigate(`/add-problem/${problem._id}`);
+    navigate(`/edit/${problem._id}`);
   };
 
   const handleDelete = async (id) => {
@@ -73,50 +81,69 @@ function ProblemList() {
     <div className="App">
       <h2 className="mb-4 text-center">Your Coding Problems</h2>
 
-      <Row className="mb-3">
-        <Col md={6}>
-          <Form.Control
-            placeholder="Search by title..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </Col>
-        <Col md={4}>
-          <Form.Select
-            value={filterDifficulty}
-            onChange={(e) => setFilterDifficulty(e.target.value)}
-          >
-            <option value="">All Difficulties</option>
-            <option>Easy</option>
-            <option>Medium</option>
-            <option>Hard</option>
-          </Form.Select>
-        </Col>
-      </Row>
+      {!user && (
+        <p className="text-danger text-center">Please log in to view your problems.</p>
+      )}
 
-      {filteredProblems.map((problem) => (
-        <Card key={problem._id} className="mb-3">
-          <Card.Body>
-            <Card.Title>
-              {problem.title}{" "}
-              <span className="badge bg-secondary">{problem.difficulty}</span>
-            </Card.Title>
-            <Card.Text>{problem.description}</Card.Text>
-            <pre>{problem.code}</pre>
-            <div className="d-flex justify-content-end gap-2">
-              <Button variant="outline-primary" onClick={() => handleEdit(problem)}>
-                Edit
-              </Button>
-              <Button variant="outline-danger" onClick={() => handleDelete(problem._id)}>
-                Delete
-              </Button>
-            </div>
-          </Card.Body>
-        </Card>
-      ))}
+      {error && (
+        <p className="text-danger text-center">{error}</p>
+      )}
+
+      {loading ? (
+        <div className="text-center mt-5">
+          <Spinner animation="border" />
+        </div>
+      ) : (
+        <>
+          <Row className="mb-3">
+            <Col md={6}>
+              <Form.Control
+                placeholder="Search by title..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </Col>
+            <Col md={4}>
+              <Form.Select
+                value={filterDifficulty}
+                onChange={(e) => setFilterDifficulty(e.target.value)}
+              >
+                <option value="">All Difficulties</option>
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+              </Form.Select>
+            </Col>
+          </Row>
+
+          {Array.isArray(filteredProblems) && filteredProblems.length > 0 ? (
+            filteredProblems.map((problem) => (
+              <Card key={problem._id} className="mb-3">
+                <Card.Body>
+                  <Card.Title>
+                    {problem.title}{" "}
+                    <span className="badge bg-secondary">{problem.difficulty}</span>
+                  </Card.Title>
+                  <Card.Text>{problem.description}</Card.Text>
+                  <pre>{problem.code}</pre>
+                  <div className="d-flex justify-content-end gap-2">
+                    <Button variant="outline-primary" onClick={() => handleEdit(problem)}>
+                      Edit
+                    </Button>
+                    <Button variant="outline-danger" onClick={() => handleDelete(problem._id)}>
+                      Delete
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            ))
+          ) : (
+            <p className="text-muted text-center">No problems to display.</p>
+          )}
+        </>
+      )}
     </div>
   );
 }
 
 export default ProblemList;
-
