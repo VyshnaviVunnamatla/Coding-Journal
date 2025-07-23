@@ -1,6 +1,8 @@
 import express from "express";
 import Problem from "../models/Problem.js";
+import protect from "../middleware/authMiddleware.js";
 const router = express.Router();
+
 
 // GET all problems
 router.get("/", async (req, res) => {
