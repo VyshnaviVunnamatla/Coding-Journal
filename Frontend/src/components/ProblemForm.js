@@ -45,8 +45,10 @@ function ProblemForm() {
       body: JSON.stringify(problem),
     });
 
-    if (res.ok) navigate("/");
-    else alert("Error saving problem");
+    if (res.ok) {
+      setOutputText(id ? "Problem updated successfully!" : "Problem created successfully!");
+      setTimeout(() => navigate("/"), 2000);
+    } else setOutputText("Error saving problem. Please try again.");
   };
 
   return (
