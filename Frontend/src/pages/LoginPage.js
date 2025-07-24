@@ -21,6 +21,7 @@ const LoginPage = () => {
     const data = await res.json();
     if (res.ok) {
       login(data);
+      console.log(data.token); 
       navigate("/");
     } else {
       alert(data.message || "Login failed");
