@@ -47,7 +47,7 @@ function ProblemForm() {
 
     if (res.ok) {
       setOutputText(id ? "Problem updated successfully!" : "Problem created successfully!");
-      setTimeout(() => navigate("/"), 2000);
+      //setTimeout(() => navigate("/"), 2000);
     } else setOutputText("Error saving problem. Please try again.");
   };
 
