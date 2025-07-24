@@ -12,6 +12,7 @@ function ProblemForm() {
   const [description, setDescription] = useState("");
   const [code, setCode] = useState("");
   const [difficulty, setDifficulty] = useState("Easy");
+  const [outputText, setOutputText] = useState("");
   
   const { user } = useAuth();
   console.log("Auth Token:", user?.token);
