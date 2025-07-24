@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Card } from "react-bootstrap";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "../context/AuthContext";
 
 
 const API_BASE = "https://coding-journal-hqbn.onrender.com/api/problems";
