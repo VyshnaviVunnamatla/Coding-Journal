@@ -14,6 +14,7 @@ function ProblemForm() {
   const [difficulty, setDifficulty] = useState("Easy");
   
   const { user } = useAuth();
+  console.log("Auth Token:", user?.token);
   const { id } = useParams();
   const navigate = useNavigate();
 
