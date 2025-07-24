@@ -12,7 +12,8 @@ function ProblemForm() {
   const [description, setDescription] = useState("");
   const [code, setCode] = useState("");
   const [difficulty, setDifficulty] = useState("Easy");
-
+  
+  const { user } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -35,7 +36,10 @@ function ProblemForm() {
 
     const res = await fetch(id ? `${API_BASE}/${id}` : API_BASE, {
       method: id ? "PUT" : "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user?.token}`,
+      },
       body: JSON.stringify(problem),
     });
 
