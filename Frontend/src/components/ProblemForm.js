@@ -77,6 +77,22 @@ function ProblemForm() {
             </Form.Group>
             <Button type="submit">{id ? "Update" : "Create"}</Button>
           </Form>
+          {outputText && (
+            <div className="output-box mt-4">
+              <h5>Output:</h5>
+              <pre className="p-3 bg-light rounded">
+                {outputText}
+              </pre>
+              <Button
+                variant="outline-secondary"
+                size="sm"
+                className="mt-2"
+                onClick={() => setOutputText("")}
+              >
+                Clear Output
+              </Button>
+            </div>
+          )}
         </Card.Body>
       </Card>
     </div>
