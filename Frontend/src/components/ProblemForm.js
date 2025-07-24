@@ -79,7 +79,7 @@ function ProblemForm() {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Output</Form.Label>
-              <Form.Control as="textarea" value={(e) => setOutputText(e.target.value)} rows={4} readOnly />
+              <Form.Control as="textarea" value={outputtext} onChange={(e) => setOutputText(e.target.value)} rows={4} readOnly />
             </Form.group>
             <Button type="submit">{id ? "Update" : "Create"}</Button>
         </Card.Body>
