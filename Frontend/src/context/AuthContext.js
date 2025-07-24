@@ -7,13 +7,13 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("user")));
 
   const login = (userData) => {
-    setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
+    setUser(userData);
   };
 
   const logout = () => {
-    setUser(null);
     localStorage.removeItem("user");
+    setUser(null);
   };
 
   return (
