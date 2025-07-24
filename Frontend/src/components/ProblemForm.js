@@ -77,24 +77,12 @@ function ProblemForm() {
               <Form.Label>Code</Form.Label>
               <Form.Control as="textarea" value={code} onChange={(e) => setCode(e.target.value)} rows={5} />
             </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Output</Form.Label>
+              <Form.Control as="textarea" value={(e) => setOutputText(e.target.value)} rows={4} readOnly />
+            </Form.group>
             <Button type="submit">{id ? "Update" : "Create"}</Button>
           </Form>
-          {outputText && (
-            <div className="output-box mt-4">
-              <h5>Output:</h5>
-              <pre className="p-3 bg-light rounded">
-                {outputText}
-              </pre>
-              <Button
-                variant="outline-secondary"
-                size="sm"
-                className="mt-2"
-                onClick={() => setOutputText("")}
-              >
-                Clear Output
-              </Button>
-            </div>
-          )}
         </Card.Body>
       </Card>
     </div>
