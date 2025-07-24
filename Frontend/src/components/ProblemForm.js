@@ -82,7 +82,6 @@ function ProblemForm() {
               <Form.Control as="textarea" value={(e) => setOutputText(e.target.value)} rows={4} readOnly />
             </Form.group>
             <Button type="submit">{id ? "Update" : "Create"}</Button>
-          </Form>
         </Card.Body>
       </Card>
     </div>
