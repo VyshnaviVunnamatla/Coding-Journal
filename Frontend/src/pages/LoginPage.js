@@ -29,22 +29,24 @@ const LoginPage = () => {
   };
 
   return (
-    <Card className="form-wrapper">
-      <Card.Body>
-        <h2>Login</h2>
-        <Form onSubmit={handleLogin}>
-          <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
-            <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} required />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          </Form.Group>
-          <Button type="submit">Login</Button>
-        </Form>
-      </Card.Body>
-    </Card>
+    <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+      <Card className="form-wrapper">
+        <Card.Body>
+          <h2>Login</h2>
+          <Form onSubmit={handleLogin}>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} required />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            </Form.Group>
+            <Button type="submit">Login</Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </div> 
   );
 };
 
