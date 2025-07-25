@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthContext";
 
 const RegisterPage = () => {
   const { login } = useAuth();
-  const [name, setName] = useState(""); // 👈 add name state
+  const [name, setName] = useState(""); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const RegisterPage = () => {
       const res = await fetch("https://coding-journal-hqbn.onrender.com/api/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }), // ✅ include name
+        body: JSON.stringify({ name, email, password }), 
       });
 
       const data = await res.json();
@@ -34,40 +34,42 @@ const RegisterPage = () => {
   };
 
   return (
-    <Card className="form-wrapper">
-      <Card.Body>
-        <h2>Register</h2>
-        <Form onSubmit={handleRegister}>
-          <Form.Group className="mb-3">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Button type="submit">Register</Button>
-        </Form>
-      </Card.Body>
-    </Card>
+    <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+      <Card className="form-wrapper">
+        <Card.Body>
+          <h2>Register</h2>
+          <Form onSubmit={handleRegister}>
+            <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Button type="submit">Register</Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
 
