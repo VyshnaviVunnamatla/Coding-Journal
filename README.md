@@ -82,11 +82,11 @@ PORT=5000
 ### Problem Routes (protected)
 
 |        Route      | Method  |        Description      |
-| ----------------- | ---- -- | ----------------------- |
+| ----------------- | ------- | ----------------------- |
 |   /api/problems   |  GET    | Get all user's problems | 
-|   /api/problems	  |  POST	  | Add a new problem       |
-| /api/problems/:id	|  PUT	  | Update a problem by ID  |
-| /api/problems/:id |  DELETE	| Delete a problem by ID  |
+|   /api/problems   |  POST   | Add a new problem       |
+| /api/problems/:id |  PUT    | Update a problem by ID  |
+| /api/problems/:id |  DELETE | Delete a problem by ID  |
 
 ---
 
