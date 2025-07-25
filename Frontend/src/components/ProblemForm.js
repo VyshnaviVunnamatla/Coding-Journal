@@ -47,7 +47,7 @@ function ProblemForm() {
 
     if (res.ok) {
       setOutputText(id ? "Problem updated successfully!" : "Problem created successfully!");
-      //setTimeout(() => navigate("/"), 2000);
+      setTimeout(() => navigate("/"), 2000);
     } else setOutputText("Error saving problem. Please try again.");
   };
 
@@ -79,7 +79,7 @@ function ProblemForm() {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Output</Form.Label>
-              <Form.Control as="textarea" value={outputText} onChange={(e) => setOutputText(e.target.value)} rows={4} readOnly />
+              <Form.Control as="textarea" value={outputText} onChange={(e) => setOutputText(e.target.value)} rows={4} />
             </Form.Group>
             <Button type="submit">{id ? "Update" : "Create"}</Button>
           </Form>
