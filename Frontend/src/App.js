@@ -9,18 +9,16 @@ import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/add-problem" element={<PrivateRoute><ProblemForm /></PrivateRoute>} />
-          <Route path="/edit/:id" element={<PrivateRoute><ProblemForm /></PrivateRoute>} />
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/add-problem" element={<PrivateRoute><ProblemForm /></PrivateRoute>} />
+        <Route path="/edit/:id" element={<PrivateRoute><ProblemForm /></PrivateRoute>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
