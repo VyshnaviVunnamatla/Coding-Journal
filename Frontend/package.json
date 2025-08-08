@@ -9,6 +9,7 @@
     "react-dom": "^18.2.0",
     "react-router-bootstrap": "^0.26.1",
     "axios": "^1.6.8",
+    "@monaco-editor/react": "^4.4.6",
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.3"
