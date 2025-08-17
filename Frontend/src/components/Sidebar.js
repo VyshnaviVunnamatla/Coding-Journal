@@ -8,7 +8,7 @@ export default function Sidebar(){
       <div className='logo'>Coding Journal</div>
       <input className='search' placeholder='Search' />
       <div className='menu'>
-        <Link to='/'>🏠 Home</Link>
+        <Link to='/'>Home</Link>
         <div className='section'>Topics</div>
         <Link to='/?topic=Arrays'>Arrays</Link>
         <Link to='/?topic=Strings'>Strings</Link>
@@ -18,13 +18,13 @@ export default function Sidebar(){
         <div className='section'>My Profile</div>
         {user ? (
           <>
-            <Link to='/add-problem'>➕ Add Problem</Link>
-            <button onClick={logout}>🚪 Logout</button>
+            <Link to='/add-problem'>Add Problem</Link>
+            <button onClick={logout}>Logout</button>
           </>
         ) : (
           <>
-            <Link to='/login'>🔑 Login</Link>
-            <Link to='/register'>📝 Register</Link>
+            <Link to='/login'>Login</Link>
+            <Link to='/register'>Register</Link>
           </>
         )}
       </div>
