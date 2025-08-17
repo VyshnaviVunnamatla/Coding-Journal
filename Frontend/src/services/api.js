@@ -47,7 +47,3 @@ export const deleteProblem = async (id, token) => {
 };
 
 export default api;
-
-// ✅ Added this so your old imports don’t break
-export { authApi };
-
