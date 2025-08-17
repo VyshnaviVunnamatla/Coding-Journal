@@ -4,7 +4,7 @@ import { reviewCode } from "../services/api";
 import { useAuth } from "../context/AuthContext";
 
 export default function EditorPanel() {
-  const { user } = useAuth(); // ✅ get user and token
+  const { user, token } = useAuth(); // ✅ get user and token
   const [code, setCode] = useState("// write your code here");
   const [language, setLanguage] = useState("javascript");
   const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ export default function EditorPanel() {
     setLoading(true);
     setError("");
     try {
-      const data = await reviewCode({ code, language, token: user?.token }); // ✅ pass token
+      const data = await reviewCode({ code, language, token });
       setSuggestions(data.suggestions || []);
       const el = document.getElementById("ai-review-placeholder");
       if (el)
