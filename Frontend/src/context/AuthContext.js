@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
   }, [user]);
 
   useEffect(() => {
-    if (token) localStorage.setItem('cj_token', token);
+    if (token) localStorage.setItem('cj_token', response.data.token);
     else localStorage.removeItem('cj_token');
   }, [token]);
 
