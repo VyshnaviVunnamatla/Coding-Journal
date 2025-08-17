@@ -7,7 +7,26 @@ import reviewRoutes from "./routes/reviewRoutes.js";
 dotenv.config();
 const app = express();
 
-app.use(cors({ origin: process.env.FRONTEND_URL || "*", credentials: true }));
+// ✅ Explicit CORS config
+const allowedOrigins = [
+  "https://coding-journal-vv.vercel.app", // your frontend (Vercel)
+  "http://localhost:3000" // for local dev
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.use(express.json({ limit: "1mb" }));
 
 await connectDB();
