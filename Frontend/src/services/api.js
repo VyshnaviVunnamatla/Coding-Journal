@@ -1,11 +1,7 @@
 import axios from "axios";
 
-const baseURL =
-  process.env.REACT_APP_API_BASE_URL ||
-  (typeof window !== "undefined" &&
-    window.__ENV__ &&
-    window.__ENV__.REACT_APP_API_BASE_URL) ||
-  "http://localhost:5000";
+// 🔧 Hardcoded baseURL for production
+const baseURL = "https://coding-journal.onrender.com";
 
 const api = axios.create({
   baseURL,
