@@ -1,0 +1,20 @@
+:root{
+  --bg:#0f1117; --panel:#151925; --text:#e6e6e6; --muted:#9aa4b2; --border:#23293a;
+}
+html,body,#root{height:100%; margin:0; background:var(--bg); color:var(--text); font-family: Inter, Arial, sans-serif;}
+.app-layout{display:flex; height:100vh; overflow:hidden;}
+.sidebar{width:260px; background:var(--panel); padding:22px; display:flex; flex-direction:column; border-right:1px solid var(--border);}
+.logo{font-size:22px; font-weight:600; margin-bottom:18px; color:#ffffff;}
+.search{width:100%; padding:10px; border-radius:8px; border:none; background:#0f1318; color:var(--text); margin-bottom:18px;}
+.menu{margin-top:12px; display:flex; flex-direction:column; gap:8px;}
+.section{color:var(--muted); margin-top:12px; margin-bottom:6px; font-size:13px;}
+.menu a, .menu button{color:var(--text); text-decoration:none; background:none; border:none; text-align:left; padding:6px 0; cursor:pointer; font-size:15px;}
+.menu a:hover, .menu button:hover{color:#fff;}
+.main{flex:1; padding:24px; overflow:auto;}
+.header-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;}
+.content-grid{display:grid; grid-template-columns:1fr 420px; gap:20px; align-items:start;}
+.panel{background:var(--panel); padding:18px; border-radius:10px; border:1px solid var(--border);}
+.editor-box{height:64vh; overflow:hidden;}
+.review-box ul{padding-left:18px; margin:0;}
+.btn-primary{background:#2b6cff; border:0;}
+.tag{font-size:12px; padding:6px 10px; border-radius:8px; background:transparent; border:1px solid var(--border); color:var(--muted);}
