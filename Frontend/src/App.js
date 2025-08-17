@@ -1,25 +1,21 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import ProblemList from "./components/ProblemList";
-import EditorPage from "./components/EditorPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import ProblemForm from "./components/ProblemForm";
+import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <nav className="navbar navbar-expand-lg navbar-dark" style={{ background: '#151925', borderBottom: '1px solid #23293a' }}>
-        <div className="container">
-          <Link className="navbar-brand" to="/">Coding Journal</Link>
-          <div className="d-flex gap-2">
-            <Link className="btn btn-outline-light btn-sm" to="/editor">Open Editor</Link>
-          </div>
-        </div>
-      </nav>
-      <div className="container py-4">
-        <Routes>
-          <Route path="/" element={<ProblemList />} />
-          <Route path="/editor" element={<EditorPage />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/add-problem" element={
+          <PrivateRoute><ProblemForm /></PrivateRoute>
+        } />
+      </Routes>
     </BrowserRouter>
   );
 }
