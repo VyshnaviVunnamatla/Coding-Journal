@@ -1,0 +1,36 @@
+/* Dark theme basics */
+:root {
+  --bg: #0f1116;
+  --panel: #151925;
+  --text: #e6e6e6;
+  --muted: #9aa4b2;
+  --border: #23293a;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.navbar, .card, .list-group-item {
+  background: var(--panel) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.btn, .form-select {
+  border-color: var(--border) !important;
+}
+.list-group-item {
+  border: 1px solid var(--border);
+}
+a { color: #7fb0ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.tag {
+  font-size: 12px;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+}
