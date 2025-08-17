@@ -21,9 +21,9 @@ export function AuthProvider({ children }) {
     else localStorage.removeItem('cj_token');
   }, [token]);
 
-  const login = (u, t) => {
-    setUser(u);
-    setToken(t); // ✅ Persist token for API access
+  const login = (user, token) => {
+    setUser(user);
+    setToken(token); // ✅ Persist token for API access
   };
 
   const logout = () => {
